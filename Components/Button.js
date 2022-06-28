@@ -1,8 +1,8 @@
 import { styled } from '@stitches/react'
 import { violet, blackA } from '@radix-ui/colors'
 
-const Button = ({ text }) => {
-  return <StyledButton>{text}</StyledButton>
+const Button = ({ text, disabled }) => {
+  return <StyledButton disabled={disabled}>{text}</StyledButton>
 }
 
 const StyledButton = styled('button', {

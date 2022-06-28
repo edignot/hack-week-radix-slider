@@ -58,7 +58,7 @@ const PriceCalculator = () => {
           text={' / yr'}
           textWeight={300}
         />
-        <Button text={'Contact Sales'} disabled />
+        <Button text={'Contact Sales'} disabled={true} />
       </TotalPriceContainer>
     </Form>
   )
