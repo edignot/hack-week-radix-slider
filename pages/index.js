@@ -47,7 +47,18 @@ const PriceCalculator = () => {
         <Track>
           <Range />
         </Track>
-        <Thumb />
+        <Thumb>
+          <Text
+            text={customers}
+            textSize={'2rem'}
+            textWeight={500}
+            otherStyles={{
+              position: 'relative',
+              bottom: '40px',
+              color: violet.violet9,
+            }}
+          />
+        </Thumb>
       </Slider>
       <TotalPriceContainer>
         <Text text={'Estimated Price'} textWeight={300} />

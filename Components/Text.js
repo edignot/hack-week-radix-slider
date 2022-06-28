@@ -5,9 +5,16 @@ const Text = ({
   spanText,
   spanWeight,
   spanSize,
+  otherStyles,
 }) => {
   return (
-    <p style={{ fontWeight: textWeight }}>
+    <p
+      style={{
+        fontWeight: textWeight,
+        fontSize: textSize,
+        ...otherStyles,
+      }}
+    >
       <span style={{ fontSize: spanSize, fontWeight: spanWeight }}>
         {spanText && spanText}
       </span>
