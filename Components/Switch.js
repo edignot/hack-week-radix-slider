@@ -3,11 +3,11 @@ import * as SwitchPrimitive from '@radix-ui/react-switch'
 import { styled } from '@stitches/react'
 import { violet, blackA } from '@radix-ui/colors'
 
-const SwitchDemo = ({ featureName, featurePrice, featurePriceHandler }) => {
+const SwitchDemo = ({ featureName, featurePrice, setFeaturePriceHandler }) => {
   const toggleFeatureHandler = (value) => {
     !value
-      ? featurePriceHandler(-featurePrice)
-      : featurePriceHandler(featurePrice)
+      ? setFeaturePriceHandler(-featurePrice)
+      : setFeaturePriceHandler(featurePrice)
   }
 
   return (
