@@ -1,20 +1,32 @@
+import React, { useState } from 'react'
 import * as SwitchPrimitive from '@radix-ui/react-switch'
 import { styled } from '@stitches/react'
 import { violet, blackA } from '@radix-ui/colors'
 
-const SwitchDemo = ({ description, price }) => (
-  <>
-    <FeatureContainer>
-      <FeatureDescription>
-        <p>{description}</p>
-        <p>{price}</p>
-      </FeatureDescription>
-      <Switch defaultChecked>
-        <Thumb />
-      </Switch>
-    </FeatureContainer>
-  </>
-)
+const SwitchDemo = ({ featureName, featurePrice, featurePriceHandler }) => {
+  const toggleFeatureHandler = (value) => {
+    !value
+      ? featurePriceHandler(-featurePrice)
+      : featurePriceHandler(featurePrice)
+  }
+
+  return (
+    <>
+      <FeatureContainer>
+        <FeatureDescription>
+          <p>{featureName}</p>
+          <p>${featurePrice}</p>
+        </FeatureDescription>
+        <Switch
+          defaultChecked
+          onCheckedChange={(value) => toggleFeatureHandler(value)}
+        >
+          <Thumb />
+        </Switch>
+      </FeatureContainer>
+    </>
+  )
+}
 
 const FeatureContainer = styled('section', {
   border: '2px solid red',

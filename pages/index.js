@@ -5,25 +5,45 @@ import { violet, blackA } from '@radix-ui/colors'
 import SwitchDemo from '../Components/Switch'
 
 const SliderDemo = () => {
-  const [price, setPrice] = useState(0)
+  const [customers, setCustomers] = useState(0)
+  const [featurePrice, setFeaturePrice] = useState(10)
+  const [totalPrice, setTotalPrice] = useState()
 
-  const calculatePriceHandler = (value) => {
-    setPrice(value)
+  const featurePriceHandler = (price) => {
+    setFeaturePrice(featurePrice + price)
+  }
+
+  const totalPriceHandler = (value) => {
+    setCustomers(value[0])
+    console.log('CU', typeof customers, customers)
+    setTotalPrice(featurePrice * customers)
   }
 
   return (
     <Form>
       <FeaturesContainer>
-        <SwitchDemo description="Feature One" price="$19" />
-        <SwitchDemo description="Feature Two" price="$49" />
-        <SwitchDemo description="Feature Three" price="$99" />
+        <SwitchDemo
+          featureName="Feature One"
+          featurePrice={19}
+          featurePriceHandler={featurePriceHandler}
+        />
+        <SwitchDemo
+          featureName="Feature Two"
+          featurePrice={49}
+          featurePriceHandler={featurePriceHandler}
+        />
+        <SwitchDemo
+          featureName="Feature Three"
+          featurePrice={99}
+          featurePriceHandler={featurePriceHandler}
+        />
       </FeaturesContainer>
       <Slider
-        max={100}
+        max={10}
         step={1}
         aria-label="Volume"
-        defaultValue={[10]}
-        onValueChange={(value) => calculatePriceHandler(value)}
+        defaultValue={[1]}
+        onValueChange={(value) => totalPriceHandler(value)}
       >
         <Track>
           <Range />
@@ -32,7 +52,8 @@ const SliderDemo = () => {
       </Slider>
       <TotalPriceContainer>
         <p>Total Price</p>
-        <p>${price}</p>
+        <p>${totalPrice}</p>
+        <p>Customers {customers}</p>
       </TotalPriceContainer>
     </Form>
   )
@@ -45,8 +66,8 @@ const Form = styled('form', {
   transform: 'translate(-50%, -50%)',
   backgroundColor: violet.violet1,
   borderRadius: '50px',
-  padding: '100px',
-  width: '50vw',
+  padding: '80px',
+  width: '60vw',
 })
 
 const FeaturesContainer = styled('section', {
@@ -56,7 +77,6 @@ const FeaturesContainer = styled('section', {
 })
 
 const TotalPriceContainer = styled('section', {
-  padding: '50px',
   display: 'flex',
   flexDirection: 'column',
   alignContent: 'center',
