@@ -15,7 +15,12 @@ const SwitchDemo = ({ featureName, featurePrice, featurePriceHandler }) => {
       <FeatureContainer>
         <FeatureDescription>
           <p>{featureName}</p>
-          <p>${featurePrice}</p>
+          <p style={{ fontWeight: '300' }}>
+            <span style={{ fontSize: '1.5rem', fontWeight: '500' }}>
+              ${featurePrice}
+            </span>{' '}
+            / yr
+          </p>
         </FeatureDescription>
         <Switch
           defaultChecked
@@ -29,12 +34,16 @@ const SwitchDemo = ({ featureName, featurePrice, featurePriceHandler }) => {
 }
 
 const FeatureContainer = styled('section', {
-  border: '2px solid red',
   display: 'flex',
   justifyContent: 'space-between',
-  padding: '10px',
+  width: '100%',
+  padding: '20px',
   border: `2px solid ${violet.violet5}`,
   borderRadius: '10px',
+  marginBottom: '20px',
+  '@media screen and (min-width: 1350px)': {
+    width: '30%',
+  },
 })
 
 const FeatureDescription = styled('section', {
@@ -43,11 +52,11 @@ const FeatureDescription = styled('section', {
 
 const Switch = styled(SwitchPrimitive.Root, {
   all: 'unset',
-  width: 60,
-  height: 30,
-  borderRadius: '9999px',
   display: 'flex',
   alignItems: 'center',
+  minWidth: 60,
+  height: 30,
+  borderRadius: '9999px',
   padding: '2px',
   boxShadow: `0 2px 10px ${blackA.blackA3}`,
   backgroundColor: blackA.blackA1,

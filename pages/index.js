@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
+import SwitchDemo from '../Components/Switch'
 import * as SliderPrimitive from '@radix-ui/react-slider'
 import { styled } from '@stitches/react'
 import { violet, blackA } from '@radix-ui/colors'
-import SwitchDemo from '../Components/Switch'
 
 const SliderDemo = () => {
   const [customers, setCustomers] = useState(0)
@@ -51,9 +51,13 @@ const SliderDemo = () => {
         <Thumb />
       </Slider>
       <TotalPriceContainer>
-        <p>Total Price</p>
-        <p>${totalPrice}</p>
-        <p>Customers {customers}</p>
+        <p style={{ fontWeight: '300' }}>Estimated Price</p>
+        <p style={{ fontWeight: '300' }}>
+          <span style={{ fontSize: '3rem', fontWeight: '500' }}>
+            ${totalPrice}
+          </span>{' '}
+          / yr
+        </p>
       </TotalPriceContainer>
     </Form>
   )
@@ -64,35 +68,22 @@ const Form = styled('form', {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  backgroundColor: violet.violet1,
-  borderRadius: '50px',
   padding: '80px',
   width: '60vw',
-})
-
-const FeaturesContainer = styled('section', {
-  display: 'flex',
-  flexWrap: 'wrap',
-  justifyContent: 'space-between',
-})
-
-const TotalPriceContainer = styled('section', {
-  display: 'flex',
-  flexDirection: 'column',
-  alignContent: 'center',
-  alignItems: 'center',
+  backgroundColor: violet.violet1,
+  borderRadius: '50px',
 })
 
 const Slider = styled(SliderPrimitive.Root, {
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
-  userSelect: 'none',
-  touchAction: 'none',
   width: '100%',
   height: '100%',
   paddingTop: '50px',
   paddingBottom: '50px',
+  userSelect: 'none',
+  touchAction: 'none',
 })
 
 const Track = styled(SliderPrimitive.Track, {
@@ -105,17 +96,17 @@ const Track = styled(SliderPrimitive.Track, {
 
 const Range = styled(SliderPrimitive.Range, {
   position: 'absolute',
-  backgroundColor: violet.violet9,
+  height: '100%',
   borderTopLeftRadius: '9999px',
   borderBottomLeftRadius: '9999px',
-  height: '100%',
+  backgroundColor: violet.violet9,
 })
 
 const Thumb = styled(SliderPrimitive.Thumb, {
   all: 'unset',
-  backgroundColor: 'red',
   width: 40,
   height: 40,
+  backgroundColor: 'red',
   borderRadius: '9999px',
   backgroundImage:
     'linear-gradient(120deg, hsl(272,53%,70%) 0%, hsl(226,68%,66%) 100%);display:flex;align-items:flex-start;justify-content:center',
@@ -124,6 +115,23 @@ const Thumb = styled(SliderPrimitive.Thumb, {
     backgroundImage:
       'linear-gradient(150deg, hsl(272,53%,70%) 0%, hsl(226,68%,66%) 100%)',
   },
+})
+
+const FeaturesContainer = styled('section', {
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  '@media screen and (min-width: 1350px)': {
+    flexDirection: 'row',
+  },
+})
+
+const TotalPriceContainer = styled('section', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignContent: 'center',
+  alignItems: 'center',
 })
 
 export default SliderDemo
