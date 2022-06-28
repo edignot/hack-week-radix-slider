@@ -4,7 +4,7 @@ import * as SliderPrimitive from '@radix-ui/react-slider'
 import { styled } from '@stitches/react'
 import { violet, blackA } from '@radix-ui/colors'
 
-const SliderDemo = () => {
+const PriceCalculator = () => {
   const [customers, setCustomers] = useState(0)
   const [featurePrice, setFeaturePrice] = useState(167)
 
@@ -131,4 +131,4 @@ const TotalPriceContainer = styled('section', {
   alignItems: 'center',
 })
 
-export default SliderDemo
+export default PriceCalculator
