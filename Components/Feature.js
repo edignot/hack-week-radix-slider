@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import Text from './Text'
 import * as SwitchPrimitive from '@radix-ui/react-switch'
 import { styled } from '@stitches/react'
 import { violet, blackA } from '@radix-ui/colors'
 
-const SwitchDemo = ({ featureName, featurePrice, setFeaturePriceHandler }) => {
+const Feature = ({ featureName, featurePrice, setFeaturePriceHandler }) => {
   const toggleFeatureHandler = (value) => {
     !value
       ? setFeaturePriceHandler(-featurePrice)
@@ -14,13 +14,14 @@ const SwitchDemo = ({ featureName, featurePrice, setFeaturePriceHandler }) => {
     <>
       <FeatureContainer>
         <FeatureDescription>
-          <p>{featureName}</p>
-          <p style={{ fontWeight: '300' }}>
-            <span style={{ fontSize: '1.5rem', fontWeight: '500' }}>
-              ${featurePrice}
-            </span>{' '}
-            / yr
-          </p>
+          <Text text={featureName} />
+          <Text
+            textWeight={300}
+            spanSize={'1.5rem'}
+            spanWeight={500}
+            text={' / yr'}
+            spanText={`$${featurePrice}`}
+          />
         </FeatureDescription>
         <Switch
           defaultChecked
@@ -78,4 +79,4 @@ const Thumb = styled(SwitchPrimitive.Thumb, {
   },
 })
 
-export default SwitchDemo
+export default Feature

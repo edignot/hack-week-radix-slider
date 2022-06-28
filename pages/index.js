@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import SwitchDemo from '../Components/Switch'
+import Feature from '../Components/Feature'
+import Text from '../Components/Text'
+import Button from '../Components/Button'
 import * as SliderPrimitive from '@radix-ui/react-slider'
 import { styled } from '@stitches/react'
 import { violet, blackA } from '@radix-ui/colors'
@@ -19,17 +21,17 @@ const PriceCalculator = () => {
   return (
     <Form>
       <FeaturesContainer>
-        <SwitchDemo
+        <Feature
           featureName="Feature One"
           featurePrice={19}
           setFeaturePriceHandler={setFeaturePriceHandler}
         />
-        <SwitchDemo
+        <Feature
           featureName="Feature Two"
           featurePrice={49}
           setFeaturePriceHandler={setFeaturePriceHandler}
         />
-        <SwitchDemo
+        <Feature
           featureName="Feature Three"
           featurePrice={99}
           setFeaturePriceHandler={setFeaturePriceHandler}
@@ -48,13 +50,15 @@ const PriceCalculator = () => {
         <Thumb />
       </Slider>
       <TotalPriceContainer>
-        <p style={{ fontWeight: '300' }}>Estimated Price</p>
-        <p style={{ fontWeight: '300' }}>
-          <span style={{ fontSize: '3rem', fontWeight: '500' }}>
-            ${featurePrice * customers}
-          </span>{' '}
-          / yr
-        </p>
+        <Text text={'Estimated Price'} textWeight={300} />
+        <Text
+          spanText={`$${featurePrice * customers}`}
+          spanSize={'3rem'}
+          spanWeight={500}
+          text={' / yr'}
+          textWeight={300}
+        />
+        <Button text={'Contact Sales'} disabled={true} />
       </TotalPriceContainer>
     </Form>
   )
@@ -69,6 +73,16 @@ const Form = styled('form', {
   width: '60vw',
   backgroundColor: violet.violet1,
   borderRadius: '50px',
+})
+
+const FeaturesContainer = styled('section', {
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  '@media screen and (min-width: 1350px)': {
+    flexDirection: 'row',
+  },
 })
 
 const Slider = styled(SliderPrimitive.Root, {
@@ -111,16 +125,6 @@ const Thumb = styled(SliderPrimitive.Thumb, {
   '&:hover': {
     backgroundImage:
       'linear-gradient(150deg, hsl(272,53%,70%) 0%, hsl(226,68%,66%) 100%)',
-  },
-})
-
-const FeaturesContainer = styled('section', {
-  display: 'flex',
-  flexWrap: 'wrap',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  '@media screen and (min-width: 1350px)': {
-    flexDirection: 'row',
   },
 })
 
