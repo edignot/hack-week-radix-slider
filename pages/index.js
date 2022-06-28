@@ -6,16 +6,16 @@ import SwitchDemo from '../Components/Switch'
 
 const SliderDemo = () => {
   const [customers, setCustomers] = useState(0)
-  const [featurePrice, setFeaturePrice] = useState(10)
+  const [featurePrice, setFeaturePrice] = useState(167)
   const [totalPrice, setTotalPrice] = useState()
 
   const featurePriceHandler = (price) => {
     setFeaturePrice(featurePrice + price)
+    setTotalPrice(featurePrice * customers)
   }
 
   const totalPriceHandler = (value) => {
     setCustomers(value[0])
-    console.log('CU', typeof customers, customers)
     setTotalPrice(featurePrice * customers)
   }
 
@@ -42,7 +42,7 @@ const SliderDemo = () => {
         max={10}
         step={1}
         aria-label="Volume"
-        defaultValue={[1]}
+        defaultValue={[0]}
         onValueChange={(value) => totalPriceHandler(value)}
       >
         <Track>
