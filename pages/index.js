@@ -7,16 +7,13 @@ import { violet, blackA } from '@radix-ui/colors'
 const SliderDemo = () => {
   const [customers, setCustomers] = useState(0)
   const [featurePrice, setFeaturePrice] = useState(167)
-  const [totalPrice, setTotalPrice] = useState()
 
-  const featurePriceHandler = (price) => {
-    setFeaturePrice(featurePrice + price)
-    setTotalPrice(featurePrice * customers)
+  const setFeaturePriceHandler = (price) => {
+    setFeaturePrice((prevFeaturePrice) => prevFeaturePrice + price)
   }
 
-  const totalPriceHandler = (value) => {
+  const setCustomersHandler = (value) => {
     setCustomers(value[0])
-    setTotalPrice(featurePrice * customers)
   }
 
   return (
@@ -25,25 +22,25 @@ const SliderDemo = () => {
         <SwitchDemo
           featureName="Feature One"
           featurePrice={19}
-          featurePriceHandler={featurePriceHandler}
+          setFeaturePriceHandler={setFeaturePriceHandler}
         />
         <SwitchDemo
           featureName="Feature Two"
           featurePrice={49}
-          featurePriceHandler={featurePriceHandler}
+          setFeaturePriceHandler={setFeaturePriceHandler}
         />
         <SwitchDemo
           featureName="Feature Three"
           featurePrice={99}
-          featurePriceHandler={featurePriceHandler}
+          setFeaturePriceHandler={setFeaturePriceHandler}
         />
       </FeaturesContainer>
       <Slider
-        max={10}
+        max={100}
         step={1}
         aria-label="Volume"
         defaultValue={[0]}
-        onValueChange={(value) => totalPriceHandler(value)}
+        onValueChange={(value) => setCustomersHandler(value)}
       >
         <Track>
           <Range />
@@ -54,7 +51,7 @@ const SliderDemo = () => {
         <p style={{ fontWeight: '300' }}>Estimated Price</p>
         <p style={{ fontWeight: '300' }}>
           <span style={{ fontSize: '3rem', fontWeight: '500' }}>
-            ${totalPrice}
+            ${featurePrice * customers}
           </span>{' '}
           / yr
         </p>
